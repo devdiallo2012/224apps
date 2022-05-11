@@ -29,7 +29,7 @@ class HTTPClientSpy: HTTPClient {
 
 class RemoteFeedLoaderTests: XCTestCase {
     
-    func test_init(){
+    func test_init_doesNotRequestsDataFromURL(){
         let client = HTTPClientSpy()
         HTTPClient.shared = client
         
