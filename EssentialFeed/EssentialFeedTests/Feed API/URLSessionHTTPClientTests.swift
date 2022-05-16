@@ -77,9 +77,12 @@ class URLSessionHTTPClientTests: XCTestCase {
     
     //MARK: -Helpers
     
-    private func makeSUT() ->  URLSessionHTTPClient {
-        return URLSessionHTTPClient()
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line ) ->  URLSessionHTTPClient {
+        let sut = URLSessionHTTPClient()
+        trackMemoryLeaks(sut)
+        return sut 
     }
+    
     private class URLProtocolStub: URLProtocol {
         private static var stub: Stub?
         private static var requestObserver: ((URLRequest) -> Void)?
