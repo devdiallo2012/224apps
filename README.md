@@ -1,5 +1,7 @@
 # Copyright: Essential Academy
 
+[![Build Status](https://app.travis-ci.com/devdiallo2012/224apps.svg?branch=main)](https://app.travis-ci.com/devdiallo2012/224apps)
+
 # Essential Feed App – Image Feed Feature
 
 ## BDD Specs
