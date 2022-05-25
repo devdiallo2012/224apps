@@ -30,15 +30,14 @@ class LocalFeedLoader {
     func save(_ items: [FeedItem], completion: @escaping (Error?) -> Void){
         store.deleteCachedFeedCall { [weak self] error in
             guard let self = self  else { return }
-            
-            if error == nil {
+            if let cacheDeletionError = error {
+                completion(cacheDeletionError)
+            } else {
                 self.store.insert(items, timestamp: self.currentDate()) { [weak self] error in
                     guard  self !=  nil else { return }
                     completion(error)
                     
                 }
-            } else {
-               completion(error)
             }
         }
     }
@@ -86,12 +85,12 @@ class CacheFeedUseCaseTests: XCTestCase {
     func test_save_failsOnDeletionError(){
         let (sut, store) = makeSUT()
         let deletionError = anyNSError()
-    
+        
         expect(sut, toCompleteWithError: deletionError) {
             store.completeDeletion(with:deletionError)
         }
     }
-
+    
     func test_save_failsOnInsertionError(){
         let (sut, store) = makeSUT()
         let insertionError = anyNSError()
@@ -178,7 +177,7 @@ class CacheFeedUseCaseTests: XCTestCase {
     //MARK: - FeedStore Spy
     
     private class FeedStoreSpy: FeedStore {
-     
+        
         
         private (set) var receivedMessages = [ReceivedMessage]()
         private var deletionCompletions = [DeletionCompletion] ()
