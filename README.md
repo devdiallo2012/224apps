@@ -38,13 +38,13 @@ So I can always enjoy images of my friends
 ```
 Given the customer doesn't have connectivity
   And there’s a cached version of the feed
-  And the cache is less than seven days old
+  And the cache is less than seven days  old
  When the customer requests to see the feed
  Then the app should display the latest feed saved
 
 Given the customer doesn't have connectivity
   And there’s a cached version of the feed
-  And the cache is seven days old or more
+  And the cache is  seven days old or more 
  When the customer requests to see the feed
  Then the app should display an error message
 
