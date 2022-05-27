@@ -10,8 +10,7 @@ import Foundation
 internal class FeedItemMapper {
     private struct Root: Decodable {
         let items: [RemoteFeedItem]
-        
-    }
+        }
 
     //MARK: - Funcs
     
