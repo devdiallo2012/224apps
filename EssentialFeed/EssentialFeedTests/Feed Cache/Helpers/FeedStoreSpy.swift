@@ -26,7 +26,7 @@ class FeedStoreSpy: FeedStore {
         case retrieve
     }
     
-    func deleteCachedFeedCall(completion: @escaping DeletionCompletion ){
+    func deleteCachedFeed(completion: @escaping DeletionCompletion ){
         deletionCompletions.append(completion)
         receivedMessages.append(.deleteCachedFeed)
     }

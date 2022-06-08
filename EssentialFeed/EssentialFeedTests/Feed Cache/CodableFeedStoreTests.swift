@@ -71,7 +71,7 @@ class CodableFeedStore: FeedStore {
         }
     }
     
-    func deleteCachedFeedCall(completion: @escaping DeletionCompletion ){
+    func deleteCachedFeed(completion: @escaping DeletionCompletion ){
         
         guard FileManager.default.fileExists(atPath: storeURL.path) else {
             return completion(nil)
@@ -229,7 +229,7 @@ class CodableFeedStoreTests: XCTestCase {
         let exp = expectation(description: "Wait for cache deletion")
         
         var deletionError: Error?
-        sut.deleteCachedFeedCall { receivedDeletionError in
+        sut.deleteCachedFeed { receivedDeletionError in
             deletionError = receivedDeletionError
             exp.fulfill()
         }
